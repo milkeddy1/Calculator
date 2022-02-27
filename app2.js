@@ -11,7 +11,6 @@ let screen = document.querySelector(".screen");
 let currentNumber;
 let formula = "";
 let statu;
-const newEval = () => { };
 
 btns.forEach((button) => {
   button.addEventListener("click", (e) => {
