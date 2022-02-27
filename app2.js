@@ -8,13 +8,10 @@ document.addEventListener("load", init());
 
 let btns = document.querySelectorAll(".btn");
 let screen = document.querySelector(".screen");
-let ans = 0;
 let currentNumber;
-let solu;
 let formula = "";
-let ans2 = 0;
-
-const newEval = () => {};
+let statu;
+const newEval = () => { };
 
 btns.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -25,54 +22,50 @@ btns.forEach((button) => {
       formula = "";
     } else if (calculate === "=") {
       let ans = eval(formula);
-      formula = "";
-      screen.value = ans;
+      screen.value = ans ? ans : 0;
+      formula = screen.value;
     } else if (calculate === "+") {
-      if (currentNumber === 0) {
-        return;
-      } else {
-        screen.value = "";
-        formula += calculate;
-        currentNumber = 0;
-      }
+      if (statu != 'number') return
+      currentNumber = eval(formula)
+      formula = currentNumber
+      screen.value = "";
+      formula += calculate;
+      statu = 'notNumber'
     } else if (calculate === "-") {
-      if (currentNumber === 0) {
-        return;
-      } else {
-        formula = screen.value;
-        screen.value = "";
-        formula += calculate;
-      }
+      if (statu != 'number')
+        return
+      currentNumber = eval(formula)
+      formula = currentNumber
+      screen.value = "";
+      formula += calculate;
+      statu = 'notNumber'
+
     } else if (calculate === "*") {
-      if (currentNumber === 0) {
-        return;
-      } else {
-        formula = screen.value;
-        screen.value = "";
-        formula += calculate;
-      }
+      if (statu != 'number') return
+      currentNumber = eval(formula)
+      formula = currentNumber
+      screen.value = "";
+      formula += calculate;
+      statu = 'notNumber'
     } else if (calculate === "/") {
-      if (currentNumber === 0) {
-        return;
-      } else {
-        formula = screen.value;
-        screen.value = "";
-        formula += calculate;
-      }
+      if (statu != 'number') return
+      currentNumber = eval(formula)
+      formula = currentNumber
+      screen.value = "";
+      formula += calculate;
+      statu = 'notNumber'
     } else if (calculate === "!") {
       let factorial = 1;
       currentNumber = screen.value;
-      if (currentNumber === 0) {
-        return;
-      } else {
-        for (let i = 1; i <= currentNumber; i++) {
-          factorial = factorial * i;
-        }
-        screen.value = "";
-        formula += factorial;
-        formula = formula.replace(currentNumber, "");
+      for (let i = 1; i <= currentNumber; i++) {
+        factorial = factorial * i;
       }
+      screen.value = "";
+      formula += factorial;
+      formula = formula.replace(currentNumber, "");
+
     } else {
+      statu = 'number'
       currentNumber = calculate;
       formula += calculate;
       screen.value += calculate;
